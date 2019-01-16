@@ -55,9 +55,31 @@ class YouTubeVideo
         return $response;
       }
 
-  
+  public function viewSort($dataBySearch)
+  {
 
-  
+    for ($i=0; $i < 20; $i++)
+    { 
+      
+        $dataById=$this->videosByIds($dataBySearch->items[$i]->id->videoId);
+        
+        $views[$i]=(int)($dataById->items[0]->statistics->viewCount);
+        $viewsID[$i]=(int)($dataById->items[0]->statistics->viewCount);
+    }
+    
+    $sort =arsort($views);
+    foreach ($views as $key => $value) {
+      $idView[]=$key;
+    }
+    
+        
+          
+
+        
+
+        return $idView;
+  }
+    
 
 
 }
@@ -69,10 +91,7 @@ if(isset($_POST['submit']))
         $video = new YouTubeVideo();
        
         $dataBySearch = $video->search($_POST['q']);
-
-
-        
-       
+        $idView=$video->viewSort($dataBySearch);
 
 
 
