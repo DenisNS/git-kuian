@@ -22,7 +22,21 @@ class YouTubeVideo
 
     }
 
+    public function videosByIds( string $ids)
+    {
+        return $this->youtube->videos->listVideos('snippet, statistics, contentDetails', [
+            'id' => $ids,
+        ]);
+    }
 
+     public function videos(int $maxResults=20, string $region='RU')
+    {
+        return $this->youtube->videos->listVideos('snippet, statistics, contentDetails', [
+           //'chart' => 'mostPopular',
+            'maxResults' => $maxResults,
+            'regionCode' => $region,
+        ]);
+    }
 
 
     public function search(string $q, int $maxResults=20, string $lang='ru',string $order ='date' ){
@@ -41,6 +55,9 @@ class YouTubeVideo
         return $response;
       }
 
+  
+
+  
 
 
 }
@@ -52,6 +69,8 @@ if(isset($_POST['submit']))
         $video = new YouTubeVideo();
        
         $dataBySearch = $video->search($_POST['q']);
+
+
         
        
 

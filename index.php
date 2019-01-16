@@ -51,7 +51,8 @@
       <div class="items"> 
       <div>
       
-        <?php $video = new YouTubeVideo();?>
+        <?php $video = new YouTubeVideo();
+        $dataById=$video->videosByIds($dataBySearch->items[$t]->id->videoId);?>
 
 
 
@@ -59,7 +60,7 @@
         <div class="items-text" ><?php echo ($dataBySearch->items[$t]->snippet->title);?></div>
         <div class="items-text" ><b>Автор: </b><?php echo ($dataBySearch->items[$t]->snippet->channelTitle);?></div>
         <div class="items-text" ><b>Дата: </b><?php echo ($dataBySearch->items[$t]->snippet->publishedAt);?></div>
-        <div class="items-text" ><b>Просмотры: </b></div>
+        <div class="items-text" ><b>Просмотры: </b><?php echo(($dataById->items[0]->statistics->viewCount));?></div>
       
       
         
