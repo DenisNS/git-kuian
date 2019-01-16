@@ -45,27 +45,27 @@
   </form>
   <?php if($_POST['submit']):?><h1 >Результаты поиска</h1><?php endif;?>
   <div class="containeer">
+    <?php require 'H.php';?>
 
-
-
+    <?php for($t=0;$t<20;$t++):?>
       <div class="items"> 
       <div>
       
+        <?php $video = new YouTubeVideo();?>
 
 
 
-
-        <div class="items-video"> <iframe allowfullscreen="" src="https://www.youtube.com/embed/k3ussYRN52I?rel=0" width="300" height="300" frameborder="0"></iframe></div>
-        <div class="items-text" ><b>Видео</b></div>
-        <div class="items-text" ><b>Автор: </b></div>
-        <div class="items-text" ><b>Дата: </b></div>
+        <div class="items-video"> <iframe allowfullscreen="" src="https://www.youtube.com/embed/<?php echo $dataBySearch->items[$t]->id->videoId;?>?rel=0" width="300" height="300" frameborder="0"></iframe></div>
+        <div class="items-text" ><?php echo ($dataBySearch->items[$t]->snippet->title);?></div>
+        <div class="items-text" ><b>Автор: </b><?php echo ($dataBySearch->items[$t]->snippet->channelTitle);?></div>
+        <div class="items-text" ><b>Дата: </b><?php echo ($dataBySearch->items[$t]->snippet->publishedAt);?></div>
         <div class="items-text" ><b>Просмотры: </b></div>
       
       
         
       </div>
       </div>
-
+    <?php endfor;?>
   </div>
 
     
